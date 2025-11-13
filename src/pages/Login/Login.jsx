@@ -1,30 +1,27 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom'
-import "./App.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import "../../App.css";
 
-function Login({ onLogin }) {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const defaultUsername = "user"; 
-    const defaultPassword = "123abc";  
-
-    if (username === defaultUsername && password === defaultPassword) {
-      onLogin();
-    } else {
-      alert("Invalid username or password!");
+    const success = login(username, password);
+    if (success) {
+      navigate("/"); // redirect to home page
     }
   };
-  const navigate = useNavigate()
 
   return (
     <div className="container">
       <div className="box">
         <h2 className="title">Login</h2>
-        <form onSubmit={handleLogin} className="form">
+        <form onSubmit={handleSubmit} className="form">
           <input
             type="text"
             placeholder="Enter Username"
@@ -39,7 +36,7 @@ function Login({ onLogin }) {
             onChange={(e) => setPassword(e.target.value)}
             className="input"
           />
-          <button type="submit" onClick={() => navigate('/') }className="button">
+          <button type="submit" className="button">
             Login
           </button>
         </form>
@@ -47,7 +44,5 @@ function Login({ onLogin }) {
     </div>
   );
 }
-
-
 
 export default Login;

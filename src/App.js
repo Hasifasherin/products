@@ -1,34 +1,47 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import About from './pages/About/about';
-import Home from './pages/Home/home';
-import Login from './pages/Login/Login';
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import About from "./pages/About/about";
+import Home from "./pages/Home/home";
+import Login from "./pages/Login/Login";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import "./App.css";
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+function PrivateRoute({ children }) {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" />;
+}
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
-
+function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Login Page */}
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/aboutus"
+        element={
+          <PrivateRoute>
+            <About />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
+  );
+}
 
-        {/* Protected Routes */}
-        <Route
-          path="/"
-          element={loggedIn ? <Home /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/aboutus"
-          element={loggedIn ? <About /> : <Navigate to="/login" />}
-        />
-      </Routes>
-    </BrowserRouter>
+function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
