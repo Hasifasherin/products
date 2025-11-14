@@ -5,19 +5,24 @@ import "react-toastify/dist/ReactToastify.css";
 const AuthContext = createContext();
 
 const fakeUsers = [
-  { username: "admin", password: "password" },
-  { username: "user1", password: "1234" },
-  { username: "user2", password: "abcd" },
+  { username: "admin", password: "1234" },
+  { username: "user", password: "1234" },
+  { username: "hasifa", password: "abcd" },
 ];
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  const [loading, setLoading] = useState(true); 
+  // Load stored user on refresh
   useEffect(() => {
     const storedUser = localStorage.getItem("authUser");
-    if (storedUser) setUser(JSON.parse(storedUser));
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    setLoading(false);
   }, []);
 
+  // Login function
   const login = (username, password) => {
     const found = fakeUsers.find(
       (u) => u.username === username && u.password === password
@@ -35,6 +40,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Logout function
   const logout = () => {
     setUser(null);
     localStorage.removeItem("authUser");
@@ -44,9 +50,13 @@ export const AuthProvider = ({ children }) => {
   return (
     <>
       <ToastContainer position="top-right" autoClose={3000} theme="colored" />
-      <AuthContext.Provider value={{ user, login, logout }}>
-        {children}
-      </AuthContext.Provider>
+
+      {/* Prevent UI flicker on refresh */}
+      {!loading && (
+        <AuthContext.Provider value={{ user, login, logout }}>
+          {children}
+        </AuthContext.Provider>
+      )}
     </>
   );
 };

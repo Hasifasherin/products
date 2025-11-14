@@ -1,0 +1,51 @@
+.header {
+  background:rgb(179, 252, 139);
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo {
+  width: 160px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-icon {
+  cursor: pointer;
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  cursor: pointer;
+  background: white;
+  font-weight: bold;
+}

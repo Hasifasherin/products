@@ -1,9 +1,10 @@
 import React from 'react'
 import ProductList from '../../components/Home/ProductList'
-const home = () => {
+
+const Home = () => {
   return (
-    <ProductList/>
+    <ProductList />
   )
 }
 
-export default home
+export default Home
