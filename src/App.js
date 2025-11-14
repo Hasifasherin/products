@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/home";
 import About from "./pages/About/about";
 import Login from "./pages/Login/Login";
+import ProductDetails from "./components/Home/ProductDetails";  // ✅ Your import
 import "./App.css";
 
 function PrivateRoute({ children }) {
@@ -19,7 +20,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="app-layout">
-        
+
         {/* Show header only when logged in */}
         {user && <Header />}
 
@@ -32,6 +33,16 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <Home />
+                </PrivateRoute>
+              }
+            />
+
+            {/* Add Product Details Route Here */}
+            <Route
+              path="/product/:id"
+              element={
+                <PrivateRoute>
+                  <ProductDetails />
                 </PrivateRoute>
               }
             />

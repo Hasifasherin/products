@@ -7,7 +7,7 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 8; // 4 above + 4 below
+  const itemsPerPage = 8;
 
   useEffect(() => {
     axios
@@ -33,7 +33,20 @@ const ProductList = () => {
 
       <div className="product-grid">
         {currentProducts.map((item) => (
-          <ProductCard key={item.id} data={item} />
+          <ProductCard
+            key={item.id}
+            data={item}
+            onDelete={(id) =>
+              setProducts(products.filter((p) => p.id !== id))
+            }
+            onUpdate={(updated) =>
+              setProducts(
+                products.map((p) =>
+                  p.id === updated.id ? updated : p
+                )
+              )
+            }
+          />
         ))}
       </div>
 
