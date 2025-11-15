@@ -4,9 +4,13 @@ import { useAuth } from "./context/AuthContext";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/home";
-import About from "./pages/About/about";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";   // <-- ADDED
 import Login from "./pages/Login/Login";
-import ProductDetails from "./components/Home/ProductDetails";  // ✅ Your import
+import ProductDetails from "./components/Home/ProductDetails";
+import AddProduct from "./components/Home/AddProduct";
+import Cart from "./pages/Cart/Cart";
+import { CartProvider } from "./context/CartContext";
 import "./App.css";
 
 function PrivateRoute({ children }) {
@@ -18,49 +22,33 @@ export default function App() {
   const { user } = useAuth();
 
   return (
-    <BrowserRouter>
-      <div className="app-layout">
+    <CartProvider>
+      <BrowserRouter>
+        <div className="app-layout">
 
-        {/* Show header only when logged in */}
-        {user && <Header />}
+          {user && <Header />}
 
-        <div className="main-content">
-          <Routes>
-            <Route path="/login" element={<Login />} />
+          <div className="main-content">
+            <Routes>
+              <Route path="/login" element={<Login />} />
 
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              }
-            />
+              <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
 
-            {/* Add Product Details Route Here */}
-            <Route
-              path="/product/:id"
-              element={
-                <PrivateRoute>
-                  <ProductDetails />
-                </PrivateRoute>
-              }
-            />
+              <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>} />
 
-            <Route
-              path="/about"
-              element={
-                <PrivateRoute>
-                  <About />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
+              <Route path="/contact" element={<PrivateRoute><Contact /></PrivateRoute>} />  {/* <-- ADDED */}
+
+              <Route path="/add-product" element={<PrivateRoute><AddProduct /></PrivateRoute>} />
+
+              <Route path="/product/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
+
+              <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
+            </Routes>
+          </div>
+
+          {user && <Footer />}
         </div>
-
-        {/* Show footer only when logged in */}
-        {user && <Footer />}
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </CartProvider>
   );
 }

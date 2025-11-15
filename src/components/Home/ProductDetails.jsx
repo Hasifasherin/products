@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./ProductDetails.css";   // ← External CSS
+import { useCart } from "../../context/CartContext";   // ← Add this
+import { toast } from "react-toastify";               // ← Toast
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useCart();   // ← Get addToCart function
 
   const [product, setProduct] = useState(null);
 
@@ -17,6 +20,12 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!product) return <h2 className="loading-text">Loading Product...</h2>;
+
+  // Handle Add to Cart
+  const handleAddCart = () => {
+    addToCart(product);   // Add full product object
+    toast.success("Added to cart!");
+  };
 
   return (
     <div className="product-details-container">
@@ -42,7 +51,9 @@ const ProductDetails = () => {
 
           <p className="product-description">{product.description}</p>
 
-          <button className="cart-btn">Add to Cart</button>
+          <button className="cart-btn" onClick={handleAddCart}>
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
