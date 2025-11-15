@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/home";
 import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";   // <-- ADDED
+import Contact from "./pages/Contact/Contact";  
 import Login from "./pages/Login/Login";
 import ProductDetails from "./components/Home/ProductDetails";
 import AddProduct from "./components/Home/AddProduct";
