@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import "./Modal.css"; // reuse modal styling
+import "./Modal.css"; 
 
 const AddProduct = ({ onAdd }) => {
   const navigate = useNavigate();

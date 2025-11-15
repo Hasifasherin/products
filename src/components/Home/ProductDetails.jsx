@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useCart } from "../../context/CartContext";   // ← Add this
-import { toast } from "react-toastify";               // ← Toast
+import { useCart } from "../../context/CartContext.jsx";   
+import { toast } from "react-toastify";               
 import "./ProductDetails.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useCart();   // ← Get addToCart function
+  const { addToCart } = useCart();   
 
   const [product, setProduct] = useState(null);
 

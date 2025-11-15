@@ -4,12 +4,12 @@ import { useAuth } from "./context/AuthContext";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home.jsx";   
-import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";
-import Login from "./pages/Login/Login";
+import About from "./pages/About/About.jsx";
+import Contact from "./pages/Contact/Contact.jsx";   
+import Login from "./pages/Login/Login.jsx";        
 import ProductDetails from "./components/Home/ProductDetails";
 import AddProduct from "./components/Home/AddProduct";
-import Cart from "./pages/Cart/Cart";
+import Cart from "./pages/Cart/Cart.jsx";           
 import { CartProvider } from "./context/CartContext";
 import "./App.css";
 

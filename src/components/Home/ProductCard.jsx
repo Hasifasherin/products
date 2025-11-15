@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Delete from "./Delete";
-import Edit from "./Edit";
+import Delete from "./Delete.jsx";
+import Edit from "./Edit.jsx";
 import axios from "axios";
 import { toast } from "react-toastify";
 

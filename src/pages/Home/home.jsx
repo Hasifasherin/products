@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductList from '../../components/Home/ProductList'
+import ProductList from '../../components/Home/ProductList.jsx'
 
 const Home = () => {
   return (
