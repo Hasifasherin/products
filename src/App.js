@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home/home";
+import Home from "./pages/Home/Home.jsx";   
 import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";  
+import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
 import ProductDetails from "./components/Home/ProductDetails";
 import AddProduct from "./components/Home/AddProduct";
@@ -36,7 +36,7 @@ export default function App() {
 
               <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>} />
 
-              <Route path="/contact" element={<PrivateRoute><Contact /></PrivateRoute>} />  {/* <-- ADDED */}
+              <Route path="/contact" element={<PrivateRoute><Contact /></PrivateRoute>} />
 
               <Route path="/add-product" element={<PrivateRoute><AddProduct /></PrivateRoute>} />
 
