@@ -4,7 +4,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "./Modal.css"; 
 
-const AddProduct = ({ onAdd }) => {
+const AddProduct = ({  }) => {
+  
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ const AddProduct = ({ onAdd }) => {
       .post("https://fakestoreapi.com/products", formData)
       .then((res) => {
         toast.success("Product added successfully!");
-        if (onAdd) onAdd(res.data); // update product list if passed
+        
         navigate("/"); // go back to product list
       })
       .catch(() => toast.error("Failed to add product!"));

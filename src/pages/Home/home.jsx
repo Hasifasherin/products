@@ -1,10 +1,10 @@
 import React from 'react'
 import ProductList from '../../components/Home/ProductList.jsx'
 
-const Home = () => {
+const home = () => {
   return (
     <ProductList />
   )
 }
 
-export default Home
+export default home

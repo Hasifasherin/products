@@ -12,7 +12,7 @@ const fakeUsers = [
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   // Load stored user on refresh
   useEffect(() => {
     const storedUser = localStorage.getItem("authUser");
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
       const userData = { username: found.username };
       setUser(userData);
       localStorage.setItem("authUser", JSON.stringify(userData));
-      toast.success(`Welcome, ${found.username}! 🎉`);
+      toast.success(`Welcome, ${found.username}! `);
       return true;
     } else {
       toast.error("Invalid username or password!");

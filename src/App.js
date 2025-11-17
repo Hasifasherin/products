@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home/Home.jsx";   
+import Home from "./pages/Home/home.jsx";   
 import About from "./pages/About/About.jsx";
 import Contact from "./pages/Contact/Contact.jsx";   
 import Login from "./pages/Login/Login.jsx";        
